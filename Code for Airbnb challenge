@@ -1,0 +1,54 @@
+SELECT 
+    *,
+    MAX (listings.price) Cost
+FROM 
+    listings 
+
+###############################
+
+SELECT 
+    listings.id,
+	listings.availability_365,
+	listings.host_name,
+	listings.name,
+	listings.price,
+	listings.reviews_per_month,
+	listings.neighbourhood,
+	listings.room_type,
+	reviews_2.id,
+	reviews_2.reviewer_name,
+	reviews_2.comments
+FROM 
+    listings
+JOIN 
+    reviews_2 
+ON 
+    listings.id=reviews_2.id
+ORDER BY listings.reviews_per_month DESC 
+
+#################################
+
+SELECT 
+    listings.id,
+	listings.host_name,
+	listings.name,
+	listings.neighbourhood,
+	MAX  (listings.number_of_reviews) review_number,
+	MAX (listings.reviews_per_month) real_reviews
+FROM 
+    listings 
+WHERE 
+    listings.reviews_per_month > 0
+GROUP BY listings.neighbourhood
+
+#####################################
+
+SELECT 
+    calendar.price
+FROM 
+    calendar
+
+ORDER BY calendar.price DESC 
+ 
+**Yipeng something went wrong with my table.  It gave me a max price of $999 which is wrong.  I tried loading the table
+several times but it kept giving me an error.  I double checked that the CSV file was correct and it was evrytime I loaded it.
